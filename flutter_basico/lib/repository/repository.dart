@@ -13,12 +13,12 @@ class Repository {
     return Lista;
   }
 
-  createCheckboxBackup(List<CheckBoxModel> ListaOriginal){
-    List<bool> backup = [];
+  saveDefault(List<CheckBoxModel> ListaOriginal){
+    List<bool> listDefault = [];
     for(var i = 0 ; i < ListaOriginal.length ; i++){
-      backup.add(ListaOriginal[i].isChecked);
+      listDefault.add(ListaOriginal[i].isChecked);
     }
 
-    return backup;
+    return listDefault;
   }
 }

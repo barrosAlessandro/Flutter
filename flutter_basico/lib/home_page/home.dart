@@ -14,14 +14,11 @@ class HomePage extends StatefulWidget{
 
 class HomePageState extends State<HomePage>{
   Repository repository = Repository();
-  static const int numItems = 10;
-  List<bool> selected = List<bool>.generate(numItems, (int index) => false);
   List<CheckBoxModel> itens = [];
-  List<bool> backup = [];
+  List<bool> listDefault = [];
   HomePageState(){
     itens = repository.populaLista();
-    backup = repository.createCheckboxBackup(itens);
-
+    listDefault = repository.saveDefault(itens);
 
   }
 
@@ -41,7 +38,7 @@ class HomePageState extends State<HomePage>{
                   onPressed: (){
                     setState(() {
                       for(var i = 0 ; i < itens.length ; i++){
-                        itens[i].isChecked = backup[i];
+                        itens[i].isChecked = listDefault[i];
                       }
 
                     });
