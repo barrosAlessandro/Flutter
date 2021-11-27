@@ -22,10 +22,10 @@ class PlantApp extends StatelessWidget {
         scaffoldBackgroundColor: kBackgroundColor,
         textTheme: Theme.of(context).textTheme.apply(bodyColor: kTextColor),
       ),
-      initialRoute: '/home',
+      initialRoute: '/splash_screen',
       routes: {
         '/grid_plants' : (context) => GridPlants(),
-        // '/splash_screen': (context) => splashScreen(),
+        '/splash_screen': (context) => splashScreen(),
         '/home': (context) => HomeScreen(),
         '/detail_plant': (context) => PlantDetailBody(dataPlant: null,),
       },

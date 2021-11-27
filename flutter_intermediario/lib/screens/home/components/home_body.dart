@@ -15,34 +15,39 @@ class HomeBody extends StatelessWidget {
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
 
-    return 
-    SingleChildScrollView( 
-      child: Column(
-        children: [
-          HeaderWithSearchBox(
+    return
+    Column(
+      children: [
+        HeaderWithSearchBox(
             screenSize: screenSize
+        ),
+        Expanded(
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                TitleWithButtonRow(
+                  title: "Favorite Plants",
+                  buttonText: "More",
+                  onPressed: () {},
+                ),
+
+                const RecomemdedPlantList(),
+
+                TitleWithButtonRow(
+                  title: "All Plants",
+                  buttonText: "More",
+                  onPressed: () {
+                    return Navigator.of(context).pushNamed('/grid_plants');
+                  },
+                ),
+
+                const RecomemdedPlantList(),
+
+              ],
+            ),
           ),
-
-          TitleWithButtonRow(
-            title: "Favorite Plants",
-            buttonText: "More",
-            onPressed: () {},
-          ),
-
-          const RecomemdedPlantList(),
-
-          TitleWithButtonRow(
-            title: "All Plants",
-            buttonText: "More",
-            onPressed: () {
-              return Navigator.of(context).pushNamed('/grid_plants');
-            },
-          ),
-
-          const RecomemdedPlantList(),
-
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

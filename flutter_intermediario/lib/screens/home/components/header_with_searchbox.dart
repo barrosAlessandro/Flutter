@@ -14,7 +14,7 @@ class HeaderWithSearchBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(
-        bottom: kDefaultPadding * 2.5
+        bottom: kDefaultPadding
       ),
       height: screenSize.height * 0.1,
       child: Stack(
@@ -34,12 +34,16 @@ class HeaderWithSearchBox extends StatelessWidget {
               ),
             ),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   "Plant App",
                   style: Theme.of(context).textTheme.headline5!.copyWith(
                     color: Colors.white,
-                    fontWeight: FontWeight.bold
+                    fontWeight: FontWeight.bold,
+
+
                   ),
                 ),
               ],
@@ -75,6 +79,10 @@ class HeaderWithSearchBox extends StatelessWidget {
                       ),
                       enabledBorder: InputBorder.none,
                       focusedBorder: InputBorder.none,
+                      suffixIconConstraints: const BoxConstraints(
+                          maxHeight: 20,
+                          maxWidth: 20
+                      ),
                       suffixIcon: SvgPicture.asset("assets/icons/search.svg")
                     ),
                   ),

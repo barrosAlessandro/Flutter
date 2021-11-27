@@ -39,17 +39,21 @@ class _LoadOnlineCardsState extends State<LoadOnlineCards>{
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-        future: futureList,
-        builder: (context, snapshot){
-          if(snapshot.hasData){
-            return ListRecommendedCards(plantsList: snapshot.data!);
+    return SizedBox(
+      width: double.infinity,
+      height: 285,
+      child: FutureBuilder(
+          future: futureList,
+          builder: (context, snapshot){
+            if(snapshot.hasData){
+              return ListRecommendedCards(plantsList: snapshot.data!);
+            }
+            else if(snapshot.hasError){
+              return Text('${snapshot.error}');
+            }
+            return const Center(child: CircularProgressIndicator());
           }
-          else if(snapshot.hasError){
-            return Text('${snapshot.error}');
-          }
-          return const Center(child: CircularProgressIndicator());
-        }
+      ),
     );
   }
 }
