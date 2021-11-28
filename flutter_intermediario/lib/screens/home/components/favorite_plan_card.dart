@@ -5,30 +5,28 @@ import 'package:flutter/material.dart';
 import 'package:challenge_ui_plant_app/providers/db_provider.dart';
 
 
-class RecomendedPlanCard extends StatelessWidget {
+class FavoritePlanCard extends StatelessWidget {
   final dataPlant;
-  const RecomendedPlanCard({
+  const FavoritePlanCard({
     Key? key,
     required this.dataPlant
   }) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
-
     return Stack(
       children: [
         Card(
             child: InkWell(
-                onTap: (){
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => PlantDetailScreen(dataPlant: dataPlant)
-                      )
-                  );
-                },
+              onTap: (){
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => PlantDetailScreen(dataPlant: dataPlant)
+                    )
+                );
+              },
                 child: Column(
                   children: [
                     SizedBox(
@@ -77,9 +75,8 @@ class RecomendedPlanCard extends StatelessWidget {
         Positioned(
           right: 5.0,
           top: 4.0,
-
           child: IconButton(
-              icon: const Icon(Icons.favorite_border_outlined),
+              icon: const Icon(Icons.favorite_outlined),
               onPressed: () {
                 var item = InfoPlants(
                     id: dataPlant.id,
@@ -90,13 +87,11 @@ class RecomendedPlanCard extends StatelessWidget {
                     carelevel: dataPlant.carelevel,
                     country: dataPlant.country);
 
-                DBProvider.db.insertFavoritePlants(item);
-                DBProvider.db.deleteFromAllPlants(dataPlant.id);
+                DBProvider.db.insertInfoPlants(item);
+                DBProvider.db.deleteFromFavoritePlants(dataPlant.id);
               }
           ),
-        ),
-
-
+        )
       ],
     );
   }

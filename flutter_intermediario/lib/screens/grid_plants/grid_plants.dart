@@ -27,7 +27,7 @@ class _GridPlantsState extends State<GridPlants> {
 
   void initState() {
     super.initState();
-    // getPlantsData();
+    getPlantsData();
   }
 
   @override

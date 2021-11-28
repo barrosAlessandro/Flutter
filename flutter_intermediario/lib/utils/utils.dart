@@ -8,6 +8,15 @@ class Utils {
     return rng.nextInt(len-1);
   }
 
+  static int indexFavorite(int len){
+    if(len < 6){
+      return len;
+    }
+    else{
+      return 6;
+    }
+  }
+
 
 
 }

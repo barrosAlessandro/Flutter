@@ -23,6 +23,8 @@ Future<List<InfoPlants>> getPlantsData() async {
         .map(
           (dynamic item) {
             DBProvider.db.createInfoPlants(InfoPlants.fromJson(item));
+            // DBProvider.db.insertFavoritePlants(InfoPlants.fromJson(item));
+
             return InfoPlants.fromJson(item);
           }
     )

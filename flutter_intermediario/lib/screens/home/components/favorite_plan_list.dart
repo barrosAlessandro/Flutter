@@ -1,6 +1,7 @@
 import 'package:challenge_ui_plant_app/models/model_info_plants.dart';
 import 'package:challenge_ui_plant_app/providers/db_provider.dart';
 import 'package:challenge_ui_plant_app/screens/detail/components/plant_detail_body.dart';
+import 'package:challenge_ui_plant_app/screens/home/components/favorite_plan_card.dart';
 import 'package:challenge_ui_plant_app/web_service/info_plants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,8 +9,8 @@ import 'recommend_plan_card.dart';
 import 'package:challenge_ui_plant_app/utils/utils.dart';
 
 
-class RecomemdedPlantList extends StatelessWidget {
-  const RecomemdedPlantList({
+class FavoritePlantList extends StatelessWidget {
+  const FavoritePlantList({
     Key? key,
   }) : super(key: key);
 
@@ -45,10 +46,10 @@ class _LoadOnlineCardsState extends State<LoadOnlineCards>{
       width: double.infinity,
       height: 285,
       child: FutureBuilder(
-          future: DBProvider.db.getAllInfoPlants(),
+          future: DBProvider.db.getFavoriteInfoPlants(),
           builder: (context, snapshot){
             if(snapshot.hasData){
-              return ListRecommendedCards(plantsList: snapshot.data!);
+              return ListFavoriteCards(plantsList: snapshot.data!);
             }
             else if(snapshot.hasError){
               return Text('${snapshot.error}');
@@ -60,26 +61,25 @@ class _LoadOnlineCardsState extends State<LoadOnlineCards>{
   }
 }
 
-class ListRecommendedCards extends StatelessWidget{
+class ListFavoriteCards extends StatelessWidget{
   final plantsList;
-  const ListRecommendedCards({Key? key, required this.plantsList}) : super(key: key);
+  const ListFavoriteCards({Key? key, required this.plantsList}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    if(plantsList.length > 0){
       return SizedBox(
         width: double.infinity,
         height: 285,
         child: ListView.builder(
           cacheExtent: double.infinity,
           scrollDirection: Axis.horizontal,
-          itemCount: 6,
+          itemCount: Utils.indexFavorite(plantsList.length),
           itemBuilder: (BuildContext context, int index){
-            final item = plantsList[plantsList.length - 1 - index];//plantsList[Utils.generateRandomIndex(plantsList.length)];
+            final item = plantsList[plantsList.length - 1 - index];
             return SizedBox(
               width: 190,
               height: 200,
-              child: RecomendedPlanCard(
+              child: FavoritePlanCard(
                   dataPlant: item
               ),
             );
@@ -88,12 +88,8 @@ class ListRecommendedCards extends StatelessWidget{
       );
     }
 
-    else{
-      return const Center(
-        child: Text('Conecte-se a Internet para aproveitar nosso App :) '),
-      );
-    }
 
-  }
+
+
 }
 
