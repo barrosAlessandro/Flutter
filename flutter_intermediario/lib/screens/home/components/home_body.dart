@@ -29,7 +29,9 @@ class HomeBody extends StatelessWidget {
                 TitleWithButtonRow(
                   title: "Favorite Plants",
                   buttonText: "More",
-                  onPressed: () {},
+                  onPressed: () {
+                    return Navigator.of(context).pushNamed('/grid_favorite_plants');
+                  },
                 ),
 
                 const FavoritePlantList(),

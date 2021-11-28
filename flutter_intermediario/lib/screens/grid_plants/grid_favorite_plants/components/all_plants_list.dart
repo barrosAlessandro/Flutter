@@ -1,5 +1,5 @@
 
-import 'package:challenge_ui_plant_app/screens/grid_plants/components/all_plants_card.dart';
+import 'package:challenge_ui_plant_app/screens/grid_plants/grid_favorite_plants/components/all_plants_card.dart';
 import 'package:challenge_ui_plant_app/screens/home/components/recommend_plan_card.dart';
 import 'package:challenge_ui_plant_app/web_service/info_plants.dart';
 import 'package:flutter/cupertino.dart';

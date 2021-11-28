@@ -1,6 +1,7 @@
 import 'package:challenge_ui_plant_app/constants.dart';
 import 'package:challenge_ui_plant_app/screens/detail/components/plant_detail_body.dart';
-import 'package:challenge_ui_plant_app/screens/grid_plants/grid_plants.dart';
+import 'package:challenge_ui_plant_app/screens/grid_plants/grid_all_plants/grid_all_plants.dart';
+import 'package:challenge_ui_plant_app/screens/grid_plants/grid_favorite_plants/grid_favorite_plants.dart';
 import 'package:challenge_ui_plant_app/screens/home/home_screen.dart';
 import 'package:challenge_ui_plant_app/screens/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +25,8 @@ class PlantApp extends StatelessWidget {
       ),
       initialRoute: '/splash_screen',
       routes: {
-        '/grid_plants' : (context) => GridPlants(),
+        '/grid_all_plants' : (context) => GridAllPlants(),
+        '/grid_favorite_plants' : (context) => GridFavoritePlants(),
         '/splash_screen': (context) => splashScreen(),
         '/home': (context) => HomeScreen(),
         '/detail_plant': (context) => PlantDetailBody(dataPlant: null,),

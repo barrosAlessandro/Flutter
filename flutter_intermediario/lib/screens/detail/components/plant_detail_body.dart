@@ -1,4 +1,5 @@
 import 'package:challenge_ui_plant_app/constants.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class PlantDetailBody extends StatelessWidget {
@@ -22,6 +23,7 @@ class PlantDetailBody extends StatelessWidget {
                 height: size.height * 0.6,
                 width: size.width * 0.75,
                 decoration: BoxDecoration(
+                  color: Colors.white,
                   borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(63),
                     bottomLeft: Radius.circular(63)
@@ -33,9 +35,9 @@ class PlantDetailBody extends StatelessWidget {
                       color: kPrimaryColor.withOpacity(0.29)
                     )
                   ],
-                  image: const DecorationImage(
-                    image: AssetImage("assets/images/img.png"),
-                    fit: BoxFit.cover,
+                  image: DecorationImage(
+                    image: NetworkImage(dataPlant.image.substring(0, dataPlant.image.indexOf('resize=')) + 'resize=500:*'),
+                    fit: BoxFit.fitWidth,
                     alignment: Alignment.centerLeft,
                   ),
                 ),

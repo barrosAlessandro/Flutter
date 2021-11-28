@@ -6,21 +6,21 @@ import 'package:challenge_ui_plant_app/web_service/info_plants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../constants.dart';
+import '../../../constants.dart';
 import 'components/all_plants_list.dart';
 
-class GridPlants extends StatefulWidget{
-  const GridPlants({Key? key}) : super(key: key);
+class GridAllPlants extends StatefulWidget{
+  const GridAllPlants({Key? key}) : super(key: key);
 
 
   @override
-  State<GridPlants> createState() {
-    return _GridPlantsState();
+  State<GridAllPlants> createState() {
+    return _GridAllPlantsState();
   }
 
 }
 
-class _GridPlantsState extends State<GridPlants> {
+class _GridAllPlantsState extends State<GridAllPlants> {
   late Future<List<InfoPlants>> futureList;
 
   @override

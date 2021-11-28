@@ -1,6 +1,8 @@
 import 'package:challenge_ui_plant_app/constants.dart';
 import 'package:challenge_ui_plant_app/models/model_info_plants.dart';
 import 'package:challenge_ui_plant_app/screens/detail/plant_detail_screen.dart';
+import 'package:challenge_ui_plant_app/screens/home/components/home_body.dart';
+import 'package:challenge_ui_plant_app/utils/notify_listeners.dart';
 import 'package:flutter/material.dart';
 import 'package:challenge_ui_plant_app/providers/db_provider.dart';
 
@@ -92,6 +94,8 @@ class RecomendedPlanCard extends StatelessWidget {
 
                 DBProvider.db.insertFavoritePlants(item);
                 DBProvider.db.deleteFromAllPlants(dataPlant.id);
+                AppControler.instance.updatePage();
+
               }
           ),
         ),

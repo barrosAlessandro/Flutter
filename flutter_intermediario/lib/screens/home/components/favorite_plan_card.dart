@@ -1,6 +1,7 @@
 import 'package:challenge_ui_plant_app/constants.dart';
 import 'package:challenge_ui_plant_app/models/model_info_plants.dart';
 import 'package:challenge_ui_plant_app/screens/detail/plant_detail_screen.dart';
+import 'package:challenge_ui_plant_app/utils/notify_listeners.dart';
 import 'package:flutter/material.dart';
 import 'package:challenge_ui_plant_app/providers/db_provider.dart';
 
@@ -89,6 +90,7 @@ class FavoritePlanCard extends StatelessWidget {
 
                 DBProvider.db.insertInfoPlants(item);
                 DBProvider.db.deleteFromFavoritePlants(dataPlant.id);
+                AppControler.instance.updatePage();
               }
           ),
         )

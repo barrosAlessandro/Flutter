@@ -2,6 +2,7 @@ import 'package:challenge_ui_plant_app/models/model_info_plants.dart';
 import 'package:challenge_ui_plant_app/providers/db_provider.dart';
 import 'package:challenge_ui_plant_app/screens/detail/components/plant_detail_body.dart';
 import 'package:challenge_ui_plant_app/screens/home/components/favorite_plan_card.dart';
+import 'package:challenge_ui_plant_app/utils/notify_listeners.dart';
 import 'package:challenge_ui_plant_app/web_service/info_plants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -42,21 +43,26 @@ class _LoadOnlineCardsState extends State<LoadOnlineCards>{
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      height: 285,
-      child: FutureBuilder(
-          future: DBProvider.db.getFavoriteInfoPlants(),
-          builder: (context, snapshot){
-            if(snapshot.hasData){
-              return ListFavoriteCards(plantsList: snapshot.data!);
-            }
-            else if(snapshot.hasError){
-              return Text('${snapshot.error}');
-            }
-            return const Center(child: CircularProgressIndicator());
-          }
-      ),
+    return AnimatedBuilder(
+        animation: AppControler.instance,
+        builder: (context, child){
+          return SizedBox(
+            width: double.infinity,
+            height: 285,
+            child: FutureBuilder(
+                future: DBProvider.db.getFavoriteInfoPlants(),
+                builder: (context, snapshot){
+                  if(snapshot.hasData){
+                    return ListFavoriteCards(plantsList: snapshot.data!);
+                  }
+                  else if(snapshot.hasError){
+                    return Text('${snapshot.error}');
+                  }
+                  return const Center(child: CircularProgressIndicator());
+                }
+            ),
+          );
+        }
     );
   }
 }
