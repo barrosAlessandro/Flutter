@@ -1,4 +1,6 @@
 
+import 'package:challenge_ui_plant_app/models/model_info_plants.dart';
+import 'package:challenge_ui_plant_app/providers/db_provider.dart';
 import 'package:challenge_ui_plant_app/utils/app_bar.dart';
 import 'package:challenge_ui_plant_app/web_service/info_plants.dart';
 import 'package:flutter/cupertino.dart';
@@ -25,7 +27,7 @@ class _GridPlantsState extends State<GridPlants> {
 
   void initState() {
     super.initState();
-    futureList = getPlantsData();
+    // getPlantsData();
   }
 
   @override
@@ -37,7 +39,7 @@ class _GridPlantsState extends State<GridPlants> {
       ),
       body: FutureBuilder(
 
-          future: futureList,
+          future: DBProvider.db.getAllInfoPlants(),
           builder: (context, snapshot){
             if(snapshot.hasData){
               return AllPlantsList(plantsList: snapshot.data!);

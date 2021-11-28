@@ -1,3 +1,5 @@
+import 'package:challenge_ui_plant_app/models/model_info_plants.dart';
+import 'package:challenge_ui_plant_app/providers/db_provider.dart';
 import 'package:challenge_ui_plant_app/screens/detail/components/plant_detail_body.dart';
 import 'package:challenge_ui_plant_app/web_service/info_plants.dart';
 import 'package:flutter/cupertino.dart';
@@ -34,7 +36,7 @@ class _LoadOnlineCardsState extends State<LoadOnlineCards>{
   @override
   void initState() {
     super.initState();
-    futureList = getPlantsData();
+    // getPlantsData();
   }
 
   @override
@@ -43,7 +45,7 @@ class _LoadOnlineCardsState extends State<LoadOnlineCards>{
       width: double.infinity,
       height: 285,
       child: FutureBuilder(
-          future: futureList,
+          future: DBProvider.db.getAllInfoPlants(),
           builder: (context, snapshot){
             if(snapshot.hasData){
               return ListRecommendedCards(plantsList: snapshot.data!);
@@ -64,11 +66,12 @@ class ListRecommendedCards extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      height: 285,
-      child: ListView.builder(
-        cacheExtent: double.infinity,
+    if(plantsList.length > 0){
+      return SizedBox(
+        width: double.infinity,
+        height: 285,
+        child: ListView.builder(
+          cacheExtent: double.infinity,
           scrollDirection: Axis.horizontal,
           itemCount: 6,
           itemBuilder: (BuildContext context, int index){
@@ -77,12 +80,20 @@ class ListRecommendedCards extends StatelessWidget{
               width: 190,
               height: 200,
               child: RecomendedPlanCard(
-                    dataPlant: item
+                  dataPlant: item
               ),
             );
           },
-      ),
-    );
+        ),
+      );
+    }
+
+    else{
+      return const Center(
+        child: Text('Conecte-se a Internet para aproveitar nosso App :) '),
+      );
+    }
+
   }
 }
 

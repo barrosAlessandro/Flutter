@@ -43,6 +43,13 @@ dependencies:
 
   retry: ^3.1.0
 
+  sqflite:
+
+  path_provider:
+
+  dio:
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

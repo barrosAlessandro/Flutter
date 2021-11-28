@@ -1,8 +1,11 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'package:challenge_ui_plant_app/models/model_info_plants.dart';
+import 'package:challenge_ui_plant_app/providers/db_provider.dart';
 import 'package:retry/retry.dart';
 import 'package:http/http.dart' as http;
+
 
 Future<List<InfoPlants>> getPlantsData() async {
   const r = RetryOptions(maxAttempts: 4);
@@ -18,11 +21,15 @@ Future<List<InfoPlants>> getPlantsData() async {
     List<dynamic> responseData = jsonDecode(response.body);
     List<InfoPlants> plantsList = responseData
         .map(
-          (dynamic item) => InfoPlants.fromJson(item),
+          (dynamic item) {
+            DBProvider.db.createInfoPlants(InfoPlants.fromJson(item));
+            return InfoPlants.fromJson(item);
+          }
     )
         .toList();
 
     return plantsList;
+
   } else {
     // If the server did not return a 200 OK response,
     // then throw an exception.
@@ -30,36 +37,20 @@ Future<List<InfoPlants>> getPlantsData() async {
   }
 }
 
-class InfoPlants {
-  final String id;
-  final String name;
-  final String image;
-  final String description;
-  final String price;
-  final String carelevel;
-  final String country;
-
-  InfoPlants({
-    required this.id,
-    required this.name,
-    required this.image,
-    required this.description,
-    required this.price,
-    required this.carelevel,
-    required this.country
-
-  });
-
-  factory InfoPlants.fromJson(Map<String, dynamic> json) {
-    return InfoPlants(
-        id: json['id'],
-        name: json['name'],
-        image: json['image'],
-        description: json['description'],
-        price: json['price'],
-        carelevel: json['carelevel'],
-        country: json['country']
-    );
-  }
-}
+// import 'package:challenge_ui_plant_app/models/model_info_plants.dart';
+// import 'package:challenge_ui_plant_app/providers/db_provider.dart';
+// import 'package:dio/dio.dart';
+//
+//
+// class EmployeeApiProvider {
+//   Future<List<InfoPlants>> getAllInfoPlants() async {
+//     var url = "http://demo8161595.mockable.io/employee";
+//     Response response = await Dio().get(url);
+//
+//     return (response.data as List).map((infoPLants) {
+//       print('Inserting $infoPLants');
+//       DBProvider.db.createInfoPlants(InfoPlants.fromJson(infoPLants));
+//     }).toList();
+//   }
+// }
 
