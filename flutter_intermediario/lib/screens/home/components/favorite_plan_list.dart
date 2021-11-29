@@ -73,25 +73,31 @@ class ListFavoriteCards extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-      return SizedBox(
-        width: double.infinity,
-        height: 285,
-        child: ListView.builder(
-          cacheExtent: double.infinity,
-          scrollDirection: Axis.horizontal,
-          itemCount: Utils.indexFavorite(plantsList.length),
-          itemBuilder: (BuildContext context, int index){
-            final item = plantsList[plantsList.length - 1 - index];
-            return SizedBox(
-              width: 190,
-              height: 200,
-              child: FavoritePlanCard(
-                  dataPlant: item
-              ),
-            );
-          },
-        ),
-      );
+      if(plantsList.length > 0){
+        return SizedBox(
+          width: double.infinity,
+          height: 285,
+          child: ListView.builder(
+            cacheExtent: double.infinity,
+            scrollDirection: Axis.horizontal,
+            itemCount: Utils.indexFavorite(plantsList.length),
+            itemBuilder: (BuildContext context, int index){
+              final item = plantsList[plantsList.length - 1 - index];
+              return SizedBox(
+                width: 190,
+                height: 200,
+                child: FavoritePlanCard(
+                    dataPlant: item
+                ),
+              );
+            },
+          ),
+        );
+
+      }
+      else{
+        return const Center(child: Text("Adicione itens aos seus favoritos"));
+      }
     }
 
 

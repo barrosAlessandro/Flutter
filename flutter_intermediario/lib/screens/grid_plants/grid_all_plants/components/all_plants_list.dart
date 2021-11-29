@@ -21,7 +21,7 @@ class AllPlantsList extends StatelessWidget{
         padding: const EdgeInsets.all(10.0),
         itemCount: plantsList.length,
         itemBuilder: (BuildContext context, int index) {
-          final item = plantsList[index];
+          final item = plantsList[plantsList.length - 1 - index];
           return AllPlantsCard(dataPlant: item,);
         }
     );

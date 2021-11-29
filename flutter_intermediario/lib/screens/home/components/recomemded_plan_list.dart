@@ -49,7 +49,7 @@ class _LoadOnlineCardsState extends State<LoadOnlineCards>{
             width: double.infinity,
             height: 285,
             child: FutureBuilder(
-                future: DBProvider.db.getAllInfoPlants(),
+                future: DBProvider.db.getRecommendedInfoPlants(),
                 builder: (context, snapshot){
                   if(snapshot.hasData){
                     return ListRecommendedCards(plantsList: snapshot.data!);

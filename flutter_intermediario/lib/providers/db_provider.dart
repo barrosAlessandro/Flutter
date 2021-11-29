@@ -121,6 +121,18 @@ class DBProvider {
     return list;
   }
 
+  Future<List<InfoPlants>> getRecommendedInfoPlants() async {
+    final db = await database;
+    final res = await db.rawQuery(
+        "SELECT * FROM InfoPlants WHERE id NOT IN (SELECT id FROM FavoritePlants)"
+    );
+
+    List<InfoPlants> list =
+    res.isNotEmpty ? res.map((c) => InfoPlants.fromJson(c)).toList() : [];
+
+    return list;
+  }
+
 
 
 }

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:challenge_ui_plant_app/constants.dart';
 import 'package:challenge_ui_plant_app/models/model_info_plants.dart';
 import 'package:challenge_ui_plant_app/screens/detail/plant_detail_screen.dart';
@@ -37,7 +38,11 @@ class RecomendedPlanCard extends StatelessWidget {
                         width: double.infinity,
                         height: screenSize.height * 0.22,
                         child: FittedBox(
-                            child: Image.network(dataPlant.image.substring(0, dataPlant.image.indexOf('resize=')) + 'resize=*:300'),
+                            child: CachedNetworkImage(
+                              imageUrl: dataPlant.image.substring(0, dataPlant.image.indexOf('resize=')) + 'resize=*:300',
+                              placeholder: (context, url) => const Material(child: CircularProgressIndicator()),
+                              errorWidget: (context, url, error) => const Icon(Icons.error),
+                            ),
                             fit: BoxFit.cover,
                             clipBehavior: Clip.hardEdge
                         )
@@ -93,7 +98,6 @@ class RecomendedPlanCard extends StatelessWidget {
                     country: dataPlant.country);
 
                 DBProvider.db.insertFavoritePlants(item);
-                DBProvider.db.deleteFromAllPlants(dataPlant.id);
                 AppControler.instance.updatePage();
 
               }

@@ -40,7 +40,7 @@ class HomeBody extends StatelessWidget {
                   title: "All Plants",
                   buttonText: "More",
                   onPressed: () {
-                    return Navigator.of(context).pushNamed('/grid_plants');
+                    return Navigator.of(context).pushNamed('/grid_all_plants');
                   },
                 ),
 
