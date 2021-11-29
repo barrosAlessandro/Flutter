@@ -38,21 +38,3 @@ Future<List<InfoPlants>> getPlantsData() async {
     throw Exception('Failed to load album');
   }
 }
-
-// import 'package:challenge_ui_plant_app/models/model_info_plants.dart';
-// import 'package:challenge_ui_plant_app/providers/db_provider.dart';
-// import 'package:dio/dio.dart';
-//
-//
-// class EmployeeApiProvider {
-//   Future<List<InfoPlants>> getAllInfoPlants() async {
-//     var url = "http://demo8161595.mockable.io/employee";
-//     Response response = await Dio().get(url);
-//
-//     return (response.data as List).map((infoPLants) {
-//       print('Inserting $infoPLants');
-//       DBProvider.db.createInfoPlants(InfoPlants.fromJson(infoPLants));
-//     }).toList();
-//   }
-// }
-

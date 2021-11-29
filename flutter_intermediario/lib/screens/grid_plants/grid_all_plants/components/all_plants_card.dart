@@ -30,7 +30,6 @@ class AllPlantsCard extends StatelessWidget {
               child: FittedBox(
                   child: CachedNetworkImage(
                     imageUrl: dataPlant.image.substring(0, dataPlant.image.indexOf('resize=')) + 'resize=*:400',
-                    placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
                     errorWidget: (context, url, error) => const Icon(Icons.error),
                   ),
                   // Image.network(dataPlant.image.substring(0, dataPlant.image.indexOf('resize=')) + 'resize=*:400'),

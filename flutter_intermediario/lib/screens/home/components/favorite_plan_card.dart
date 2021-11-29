@@ -37,7 +37,6 @@ class FavoritePlanCard extends StatelessWidget {
                         child: FittedBox(
                             child: CachedNetworkImage(
                               imageUrl: dataPlant.image.substring(0, dataPlant.image.indexOf('resize=')) + 'resize=*:400',
-                              placeholder: (context, url) => const Material(child: CircularProgressIndicator()),
                               errorWidget: (context, url, error) => const Icon(Icons.error),
                             ),
                             fit: BoxFit.cover,

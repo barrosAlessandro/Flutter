@@ -37,7 +37,7 @@ class _LoadOnlineCardsState extends State<LoadOnlineCards>{
   @override
   void initState() {
     super.initState();
-    // getPlantsData();
+    getPlantsData();
   }
 
   @override
