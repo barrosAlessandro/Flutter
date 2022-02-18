@@ -15,7 +15,7 @@ class splashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     goToHome()async{
       getPlantsData();
-      await Future.delayed(const Duration(milliseconds: 2000), (){
+      await Future.delayed(const Duration(milliseconds: 2500), (){
         Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeScreen()));
       });
     }
@@ -30,40 +30,9 @@ class splashScreen extends StatelessWidget {
           textAlign: TextAlign.center),
         ),
       );
-
-    //
-    // return FutureBuilder(
-    //     future: waitSomeSeconds(),
-    //     initialData: splashScreenDesign(),
-    //     builder: (BuildContext context, AsyncSnapshot<void> snapshot){
-    //       if(snapshot.hasData){
-    //         return splashScreenDesign();
-    //       }
-    //       else{
-    //         return HomeScreen();
-    //       }
-    // }
-    // );
-
   }
 }
 
-// class splashScreenDesign extends StatelessWidget{
-//   const splashScreenDesign({Key? key}) : super(key: key);
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return const Material(
-//       textStyle: TextStyle(color: Colors.white, fontStyle: FontStyle.italic, fontSize: 50, fontWeight: FontWeight.w600),
-//       color: kPrimaryColor,
-//       child: Center(
-//         child: Text('FLUTTER\nPLANT\nAPP UI',
-//           textAlign: TextAlign.center),
-//         ),
-//       );
-//   }
-//
-// }
 
 
 

@@ -1,0 +1,36 @@
+[
+    {
+        "id": "b79713b2-d895-494a-9568-20be6fa8eb6c",
+        "title": "Retrospective",
+        "description": "Bi-weekly meeting to discuss pain points, celebrate achievements and define common  actions to all team",
+        "startDate": "23-01-2022",
+        "endDate": "23-01-2022",
+        "local": "CESAR School",
+        "sessions": [
+            {
+                "id": "9ea90564-3ab9-4d81-a082-7e8409ec4ab9",
+                "meetingId": "b79713b2-d895-494a-9568-20be6fa8eb6c",
+                "name": "Starfish",
+                "description": "To foster the thinking around practices and the value the team from it",
+                "columns": [
+                    {
+                        "name": "Less",
+                        "color": "4A619C"
+                    }
+
+                ],
+                "highlight": "87369B",
+                "stickies": [
+                    {
+                        "id": "0100c07e-b452-4972-a573-e26b37bbf531",
+                        "content": "More 1",
+                        "columnName": "More",
+                        "userName": "Victor",
+                        "sessionId": "9ea90564-3ab9-4d81-a082-7e8409ec4ab9"
+                    }
+                ]
+            }
+        ],
+        "stickies": []
+    }
+]

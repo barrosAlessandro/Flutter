@@ -90,19 +90,19 @@ class DBProvider {
     return res;
   }
 
-  insertInfoPlants(InfoPlants newInfoPlants) async {
-    final db = await database;
-    final res = await db.insert('InfoPlants', newInfoPlants.toJson());
+  // insertInfoPlants(InfoPlants newInfoPlants) async {
+  //   final db = await database;
+  //   final res = await db.insert('InfoPlants', newInfoPlants.toJson());
+  //
+  //   return res;
+  // }
 
-    return res;
-  }
-
-  deleteFromAllPlants(String id) async {
-    final db = await database;
-    final res = await db.rawDelete('DELETE FROM InfoPlants WHERE id = ?', [id]);
-
-    return res;
-  }
+  // deleteFromAllPlants(String id) async {
+  //   final db = await database;
+  //   final res = await db.rawDelete('DELETE FROM InfoPlants WHERE id = ?', [id]);
+  //
+  //   return res;
+  // }
 
   deleteFromFavoritePlants(String id) async {
     final db = await database;
