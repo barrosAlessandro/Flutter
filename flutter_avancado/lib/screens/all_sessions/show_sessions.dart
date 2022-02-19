@@ -1,7 +1,7 @@
-// ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
 import 'package:flutter_avancado/screens/all_sessions/components/session_card.dart';
+import 'package:flutter_avancado/screens/session_create/create_sessions.dart';
 import 'package:flutter_avancado/utils/constants.dart';
 
 class ShowSessions extends StatefulWidget{
@@ -21,17 +21,21 @@ class _ShowSessions extends State<ShowSessions>{
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(dataMeeting.title , style: TextStyle(color: kPrimaryColor, fontSize: 25.0)),
+        title: Text(dataMeeting.title , style: const TextStyle(color: kPrimaryColor, fontSize: 25.0)),
         centerTitle: true,
         backgroundColor: kWhiteColor,
-        iconTheme: IconThemeData(color: kPrimaryColor),
+        iconTheme: const IconThemeData(color: kPrimaryColor),
       ),
 
-      body: dataMeeting.sessions.length>0 ? ListSessions(dataMeeting: dataMeeting) : BlankSessions(),
+      body: dataMeeting.sessions.length>0 ? ListSessions(dataMeeting: dataMeeting) : const BlankSessions(),
 
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // Add your onPressed code here!
+          Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const CreateSessions())
+                    );
         },
         backgroundColor: kPrimaryColor,
         child: const Icon(Icons.add),

@@ -29,7 +29,7 @@ class _Meetings extends State<Meetings>{
               tooltip: 'Notifications',
               onPressed: () {
                 ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('This is a snackbar')));
+                    const SnackBar(content: Text('Função não implementada')));
               },
             )
           ],

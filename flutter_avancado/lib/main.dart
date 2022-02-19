@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_avancado/screens/all_sessions/show_sessions.dart';
 import 'package:flutter_avancado/screens/meetings/meetings.dart';
+import 'package:flutter_avancado/screens/session_create/create_sessions.dart';
 import 'package:flutter_avancado/utils/constants.dart';
 
 
@@ -18,14 +19,16 @@ class PlantApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Sticky Session App',
       theme: ThemeData(
+        // inputDecorationTheme: InputDecorationTheme(floatingLabelStyle: TextStyle(color: kPrimaryColor)),
         primaryColor: kPrimaryColor,
         scaffoldBackgroundColor: kBackgroundColor,
       ),
       initialRoute: '/meetings',
       routes: {
         '/meetings' : (context) => Meetings(),
+        // '/create_sessions' : (context) => CreateSessions(),
         // '/show_sessions' : (context) => ShowSessions(dataMeeting: null,),
-      //   '/splash_screen': (context) => splashScreen(),
+        // '/splash_screen': (context) => splashScreen(),
       //   '/home': (context) => HomeScreen(),
       //   '/detail_plant': (context) => PlantDetailBody(dataPlant: null,),
       },
