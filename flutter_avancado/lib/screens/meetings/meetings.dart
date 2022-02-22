@@ -77,8 +77,7 @@ class BodyMeetings extends StatelessWidget{
             itemCount: 1,
             itemBuilder: (BuildContext context, int index){
               final item = meetingsList[0];
-              return MeetingCard(dataMeeting: item, isRecent: true, );
-
+              return MeetingCard(dataMeeting: item, isRecent: true);
             },
           ),
 
@@ -92,9 +91,9 @@ class BodyMeetings extends StatelessWidget{
             scrollDirection: Axis.vertical,
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
-            itemCount: meetingsList.length,
+            itemCount: meetingsList.length - 1,
             itemBuilder: (BuildContext context, int index){
-              final item = meetingsList[index];
+              final item = meetingsList[index + 1];
               return MeetingCard(dataMeeting: item, isRecent: false,);
             },
           )

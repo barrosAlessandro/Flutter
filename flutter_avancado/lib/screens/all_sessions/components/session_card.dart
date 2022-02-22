@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_avancado/screens/session_view/session_view.dart';
 import 'package:flutter_avancado/utils/constants.dart';
 
 class SessionCard extends StatelessWidget{
@@ -13,7 +14,12 @@ class SessionCard extends StatelessWidget{
 
 
     return GestureDetector(
-
+      onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => SessionView(dataSession: dataSession,)
+                    )
+                ),
       child: Container(
         height: cardHeight,
         width: double.infinity,
