@@ -55,11 +55,12 @@ class _StickySessionAppState extends State<StickySessionApp> {
       ),
       initialRoute: '/splash_screen',
       routes: {
+        // '/' :(context) => Meetings(),
         '/splash_screen': (context) => SplashScreen(),
 
       },
 
-      // home: Meetings(),
+      home: Meetings(),
 
     );
   }

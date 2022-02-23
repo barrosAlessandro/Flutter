@@ -35,7 +35,14 @@ List<Columns> createList(dataSession){
 
 Tab createTab(String name, int number){
   return 
-    Tab(child: Row(children: [Text(name.toUpperCase()), const SizedBox(width: 4), Text(number.toString())]));
+    Tab(child: Row(children: [Text(name.toUpperCase()), const SizedBox(width: 4), 
+    
+    Container(
+      width: 19,
+      height: 19,
+      decoration: BoxDecoration(shape: BoxShape.circle, color: Color.fromARGB(213, 209, 207, 207)),
+      
+      child: Center(child: Text(number.toString())))]));
 }
 
 

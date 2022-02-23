@@ -16,7 +16,7 @@ class SplashScreen extends StatelessWidget {
     goToHome()async{
       // getMeetingsData();
       await Future.delayed(const Duration(milliseconds: 2500), (){
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const Meetings()));
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Meetings()));
       });
     }
 

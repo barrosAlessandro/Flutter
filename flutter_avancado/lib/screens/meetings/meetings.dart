@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_avancado/main.dart';
 import 'package:flutter_avancado/screens/meetings/components/meeting_card.dart';
 import 'package:flutter_avancado/utils/constants.dart';
+import 'package:flutter_avancado/utils/notify_listeners.dart';
 import 'package:flutter_avancado/web_service/meetings_request.dart';
 import 'package:localization/localization.dart';
 
@@ -34,7 +35,7 @@ class _Meetings extends State<Meetings>{
               onPressed: () {                
                 Locale newLocale = const Locale('pt', 'BR');
                 StickySessionApp.setLocale(context, newLocale);
-                
+                                
                 Timer(const Duration(seconds: 2), () {
                   StickySessionApp.setLocale(context, newLocale);
                 });
@@ -46,7 +47,7 @@ class _Meetings extends State<Meetings>{
               tooltip: 'toggle-language'.i18n(),
               onPressed: () {
                 Locale newLocale = const Locale('en', 'US');
-                StickySessionApp.setLocale(context, newLocale);  
+                StickySessionApp.setLocale(context, newLocale);                 
 
                 Timer(const Duration(seconds: 2), () {
                   StickySessionApp.setLocale(context, newLocale);
