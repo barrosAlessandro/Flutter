@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_avancado/screens/meetings/meetings.dart';
 import 'package:flutter_avancado/screens/splash_screen/splash_screen.dart';
 import 'package:flutter_avancado/utils/constants.dart';
@@ -34,6 +35,9 @@ class _StickySessionAppState extends State<StickySessionApp> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+        DeviceOrientation.portraitUp,
+      ]);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       // locale: const Locale('en','US'),
