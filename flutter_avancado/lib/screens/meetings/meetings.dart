@@ -24,7 +24,7 @@ class _Meetings extends State<Meetings>{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('meetings'.i18n(), style: const TextStyle(color: kPrimaryColor, fontSize: 25.0),),
+        title: Text('Meetings'.i18n(), style: const TextStyle(color: kPrimaryColor, fontSize: 25.0),),
         centerTitle: true,
         leading: const Icon(Icons.menu_outlined, color: kPrimaryColor),
         actions: 
