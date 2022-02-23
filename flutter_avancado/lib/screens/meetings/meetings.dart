@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_avancado/main.dart';
 import 'package:flutter_avancado/screens/meetings/components/meeting_card.dart';
@@ -27,11 +29,28 @@ class _Meetings extends State<Meetings>{
         actions: 
           <Widget>[
             IconButton(
-              icon: const Icon(Icons.translate, color: Color.fromARGB(255, 141, 139, 139)),
+              icon: Image.asset("assets/images/brasil.png"),
+              tooltip: 'toggle-language'.i18n(),
+              onPressed: () {                
+                Locale newLocale = const Locale('pt', 'BR');
+                StickySessionApp.setLocale(context, newLocale);
+                
+                Timer(const Duration(seconds: 2), () {
+                  StickySessionApp.setLocale(context, newLocale);
+                });
+
+              },
+            ),
+            IconButton(
+              icon: Image.asset("assets/images/united-states.png"),
               tooltip: 'toggle-language'.i18n(),
               onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('function-not-implemented'.i18n())));
+                Locale newLocale = const Locale('en', 'US');
+                StickySessionApp.setLocale(context, newLocale);  
+
+                Timer(const Duration(seconds: 2), () {
+                  StickySessionApp.setLocale(context, newLocale);
+                });
                 
               },
             )
