@@ -1,0 +1,15 @@
+{
+    "meetings": "Meetings",
+    "recents" : "Recents",
+    "older" : "Older",
+    "participants" : "Participants",
+    "create-session" : "Create session",
+    "title" : "Title",
+    "description" : "Description",
+    "select-color" : "Select a color",
+    "new-note" : "+ NEW NOTE",
+    "function-not-implemented" : "Funtion not implemented",
+    "create-note" : "Create note",
+    "note-input" : "   Note",
+    "toggle-language" : "Toggle language" 
+}

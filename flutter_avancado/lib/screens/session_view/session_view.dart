@@ -6,6 +6,7 @@ import 'package:flutter_avancado/screens/notes_create/notes_create.dart';
 import 'package:flutter_avancado/screens/session_view/components/list_of_tabs.dart';
 import 'package:flutter_avancado/screens/session_view/components/sticky_card.dart';
 import 'package:flutter_avancado/utils/constants.dart';
+import 'package:localization/localization.dart';
 
 
 class SessionView extends StatefulWidget{
@@ -88,7 +89,7 @@ class BodySessionView extends StatelessWidget{
               width: screenSize.width*0.8,
               height: 50, 
               color: Color.fromARGB(255, 216, 215, 215),
-              child: Center(child: Text('+ NEW NOTE', style: TextStyle(color: Color.fromARGB(255, 126, 125, 125), fontWeight: FontWeight.bold, fontSize: 15),)),
+              child: Center(child: Text('new-note'.i18n(), style: TextStyle(color: Color.fromARGB(255, 126, 125, 125), fontWeight: FontWeight.bold, fontSize: 15),)),
             ),
           ),
 

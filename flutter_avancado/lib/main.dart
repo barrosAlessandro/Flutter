@@ -1,38 +1,49 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_avancado/screens/all_sessions/show_sessions.dart';
 import 'package:flutter_avancado/screens/meetings/meetings.dart';
-import 'package:flutter_avancado/screens/session_create/create_sessions.dart';
 import 'package:flutter_avancado/utils/constants.dart';
-
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:localization/localization.dart';
 
 
 void main() {
-  runApp(const PlantApp());
+  runApp(const StickySessionApp());
 }
 
-class PlantApp extends StatelessWidget {
-  const PlantApp({Key? key}) : super(key: key);
+class StickySessionApp extends StatefulWidget {
+  const StickySessionApp({Key? key}) : super(key: key);
+
+  @override
+  State<StatefulWidget> createState() {
+    return _StickySessionAppState();
+  }
+}
+
+class _StickySessionAppState extends State<StickySessionApp> {
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      locale: const Locale('en','US'),
+      // locale: const Locale('pt','BR'),
+
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        LocalJsonLocalization.delegate,
+      ],
+      supportedLocales: const [
+        Locale('en', 'US'),
+        Locale('pt', 'BR')
+      ],
       title: 'Sticky Session App',
       theme: ThemeData(
-        // inputDecorationTheme: InputDecorationTheme(floatingLabelStyle: TextStyle(color: kPrimaryColor)),
         primaryColor: kPrimaryColor,
         scaffoldBackgroundColor: kBackgroundColor,
       ),
-      initialRoute: '/meetings',
-      routes: {
-        '/meetings' : (context) => Meetings(),
-        // '/create_sessions' : (context) => CreateSessions(),
-        // '/show_sessions' : (context) => ShowSessions(dataMeeting: null,),
-        // '/splash_screen': (context) => splashScreen(),
-      //   '/home': (context) => HomeScreen(),
-      //   '/detail_plant': (context) => PlantDetailBody(dataPlant: null,),
-      },
-      // home: const HomeScreen(),
+
+      home: const Meetings(),
+
     );
   }
 }

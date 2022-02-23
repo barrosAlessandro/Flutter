@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_avancado/screens/session_create/components/colors_sessions.dart';
 import 'package:flutter_avancado/utils/constants.dart';
+import 'package:localization/localization.dart';
 
 class CreateSessions extends StatefulWidget{
   const CreateSessions({Key? key}) : super(key: key);
@@ -19,7 +20,7 @@ class _CreateSessions extends State{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Create Session' , style: TextStyle(color: kPrimaryColor, fontSize: 25.0)),
+        title: Text('create-session'.i18n() , style: TextStyle(color: kPrimaryColor, fontSize: 25.0)),
         backgroundColor: kWhiteColor,
         iconTheme: const IconThemeData(color: kPrimaryColor),
         actions: 
@@ -29,7 +30,7 @@ class _CreateSessions extends State{
               tooltip: 'Notifications',
               onPressed: () {
                 ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Função não implementada')));
+                    SnackBar(content: Text('function-not-implemented'.i18n())));
               },
             )
           ],
@@ -60,7 +61,7 @@ class BodyCreateSessions extends StatelessWidget{
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const TextField(
+              TextField(
                 style: TextStyle(fontSize: 18),
                 cursorColor: Colors.grey,        
                 decoration: InputDecoration(
@@ -69,7 +70,7 @@ class BodyCreateSessions extends StatelessWidget{
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: kPrimaryColor)
                   ),
-                  labelText: 'Title',
+                  labelText: 'title'.i18n(),
                   floatingLabelStyle: TextStyle(color: kPrimaryColor)
                 ),
               ),
@@ -87,7 +88,7 @@ class BodyCreateSessions extends StatelessWidget{
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: kPrimaryColor)
                     ),
-                    labelText: 'Description',
+                    labelText: 'description'.i18n(),
                     
                     floatingLabelStyle: TextStyle(color: kPrimaryColor)
                   ),
@@ -96,7 +97,7 @@ class BodyCreateSessions extends StatelessWidget{
 
               Container(
                 margin: EdgeInsets.only(top: 30.0),
-                child: Text('Select a color', style: TextStyle(color: Color.fromARGB(255, 136, 136, 136), fontWeight: FontWeight.bold, fontSize: 18)),
+                child: Text('select-color'.i18n(), style: TextStyle(color: Color.fromARGB(255, 136, 136, 136), fontWeight: FontWeight.bold, fontSize: 18)),
               ),
 
               SetColor()

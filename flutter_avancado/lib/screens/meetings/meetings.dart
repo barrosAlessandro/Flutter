@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_avancado/main.dart';
 import 'package:flutter_avancado/screens/meetings/components/meeting_card.dart';
 import 'package:flutter_avancado/utils/constants.dart';
 import 'package:flutter_avancado/web_service/meetings_request.dart';
+import 'package:localization/localization.dart';
 
 class Meetings extends StatefulWidget{
   const Meetings({Key? key}) : super(key: key);
@@ -19,17 +21,18 @@ class _Meetings extends State<Meetings>{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Meetings", style: TextStyle(color: kPrimaryColor, fontSize: 25.0),),
+        title: Text('meetings'.i18n(), style: const TextStyle(color: kPrimaryColor, fontSize: 25.0),),
         centerTitle: true,
         leading: const Icon(Icons.menu_outlined, color: kPrimaryColor),
         actions: 
           <Widget>[
             IconButton(
-              icon: const Icon(Icons.notifications, color: Color.fromARGB(255, 141, 139, 139)),
-              tooltip: 'Notifications',
+              icon: const Icon(Icons.translate, color: Color.fromARGB(255, 141, 139, 139)),
+              tooltip: 'toggle-language'.i18n(),
               onPressed: () {
                 ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Função não implementada')));
+                    SnackBar(content: Text('function-not-implemented'.i18n())));
+                
               },
             )
           ],
@@ -67,7 +70,7 @@ class BodyMeetings extends StatelessWidget{
           Container(
             alignment: Alignment.centerLeft,
             padding: const EdgeInsets.all(20.0),
-            child: const Text("Recents", style: TextStyle(color: Color(0xFF8b8b8b), fontSize: 18.0, fontWeight: FontWeight.w500))
+            child: Text("recents".i18n(), style: TextStyle(color: Color(0xFF8b8b8b), fontSize: 18.0, fontWeight: FontWeight.w500))
           ),
 
           ListView.builder(
@@ -84,7 +87,7 @@ class BodyMeetings extends StatelessWidget{
           Container(
             alignment: Alignment.centerLeft,
             padding: const EdgeInsets.all(20.0),
-            child: const Text("Older", style: TextStyle(color: Color(0xFF8b8b8b), fontSize: 18.0, fontWeight: FontWeight.w500))
+            child: Text("older".i18n(), style: TextStyle(color: Color(0xFF8b8b8b), fontSize: 18.0, fontWeight: FontWeight.w500))
           ),
 
           ListView.builder(

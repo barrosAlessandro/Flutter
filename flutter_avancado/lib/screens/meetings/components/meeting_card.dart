@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_avancado/main.dart';
 import 'package:flutter_avancado/screens/all_sessions/show_sessions.dart';
 import 'package:flutter_avancado/utils/constants.dart';
+import 'package:localization/localization.dart';
 
 class MeetingCard extends StatelessWidget{
   final dataMeeting;
@@ -52,7 +54,7 @@ class MeetingCard extends StatelessWidget{
                   Icon(Icons.people_alt_rounded, color: isRecent ? const Color(0xFFe6dee6) : kPrimaryColor, size: 18),
                   Padding(
                     padding: const EdgeInsets.only(left: 10.0),
-                    child: Text('8 Participants', style: TextStyle(color: isRecent ? const Color(0xFFe6dee6) : kPrimaryColor, fontWeight: FontWeight.w400, fontSize: 16)),
+                    child: Text('8 ' + 'participants'.i18n(), style: TextStyle(color: isRecent ? const Color(0xFFe6dee6) : kPrimaryColor, fontWeight: FontWeight.w400, fontSize: 16)),
                   ),
                 ],
             )

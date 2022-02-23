@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_avancado/utils/constants.dart';
+import 'package:localization/localization.dart';
 
 class CreateNotes extends StatefulWidget{
   const CreateNotes({Key? key}) : super(key: key);
@@ -16,7 +17,7 @@ class _CreateNotes extends State<CreateNotes>{
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-        title: const Text('Create Note' , style: TextStyle(color: kPrimaryColor, fontSize: 25.0)),
+        title: Text('create-note'.i18n() , style: const TextStyle(color: kPrimaryColor, fontSize: 25.0)),
         centerTitle: true,
         backgroundColor: kWhiteColor,
         iconTheme: const IconThemeData(color: kPrimaryColor),
@@ -35,14 +36,14 @@ class _CreateNotes extends State<CreateNotes>{
 
       body: Container(
         margin: const EdgeInsets.all(20),
-        child: const TextField(
+        child: TextField(
           cursorHeight: 30,
           autofocus: true,
           cursorColor: kPrimaryColor,
           maxLines: 10,
-          style: TextStyle(fontSize: 18),
+          style: const TextStyle(fontSize: 18),
           decoration: InputDecoration.collapsed(
-            hintText: '  Note'
+            hintText: 'note-input'.i18n()
           )
         )
         

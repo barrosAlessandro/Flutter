@@ -1,0 +1,16 @@
+{
+    "meetings": "Encontros",
+    "recents" : "Recentes",
+    "older" : "Anteriores",
+    "participants" : "Participantes",
+    "create-session" : "Criar sessão",
+    "title" : "Título",
+    "description" : "Descrição",
+    "select-color" : "Selecionar uma cor",
+    "new-note" : "+ Nova anotação",
+    "function-not-implemented" : "Função não implementada",
+    "create-note" : "Criar anotação",
+    "note-input" : "   Anotação",
+    "toggle-language" : "Alternar idioma" 
+
+}
