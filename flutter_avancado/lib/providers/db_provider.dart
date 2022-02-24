@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter_avancado/models/meeting_model.dart';
 import 'package:flutter_avancado/providers/models.dart';
+import 'package:flutter_avancado/screens/session_create/components/colors_sessions.dart';
 import 'package:path/path.dart';
 
 import 'package:path_provider/path_provider.dart';
@@ -46,14 +47,15 @@ class DBProvider {
           ')',
       'CREATE TABLE Columns('
           'name TEXT,'
-          'color TEXT'
+          'color TEXT,'
+          'sessionId TEXT'
           ')',
       'CREATE TABLE Stickies('
           'id TEXT,'
           'content TEXT,'
           'columnName TEXT,'
           'userName TEXT,'
-          'sessionId'
+          'sessionId TEXT'
           ')'              
 
     ];
@@ -108,10 +110,11 @@ class DBProvider {
 
 
     // Insert InfoPlants on database
-  insertColumns(ColumnsTable newInfoPlants) async {
+  insertColumns(ColumnsTable newColumns, String idSession) async {
     await deleteAllColumns();
+
     final db = await database;
-    final res = await db.insert('Columns', newInfoPlants.toJson());
+    final res = await db.insert('Columns', newColumns.toJson(idSession));
 
     return res;
   }
@@ -145,51 +148,9 @@ class DBProvider {
   }
 
 
+  //*********************
+  //*********************
 
-
-  // Future<List<MeetingsTable>> getAllMeetings() async {
-  //   final db = await database;
-  //   final res = await db.rawQuery("SELECT * FROM Meetings");
-
-  //   List<MeetingsTable> list =
-  //   res.isNotEmpty ? res.map((c) => MeetingsTable.fromJson(c)).toList() : [];
-
-  //   print(list);
-  //   return list;
-  // }
-
-  // Future<List<SessionsTable>> getAllSessions() async {
-  //   final db = await database;
-  //   final res = await db.rawQuery("SELECT * FROM Sessions");
-
-  //   List<SessionsTable> list =
-  //   res.isNotEmpty ? res.map((c) => SessionsTable.fromJson(c)).toList() : [];
-
-  //   print(list);
-  //   return list;
-  // }
-
-  //   Future<List<ColumnsTable>> getAllColumns() async {
-  //   final db = await database;
-  //   final res = await db.rawQuery("SELECT * FROM Columns");
-
-  //   List<ColumnsTable> list =
-  //   res.isNotEmpty ? res.map((c) => ColumnsTable.fromJson(c)).toList() : [];
-
-  //   print(list);
-  //   return list;
-  // }
-
-  //   Future<List<StickiesTable>> getAllStickies() async {
-  //   final db = await database;
-  //   final res = await db.rawQuery("SELECT * FROM Stickies");
-
-  //   List<StickiesTable> list =
-  //   res.isNotEmpty ? res.map((c) => StickiesTable.fromJson(c)).toList() : [];
-
-  //   print(list);
-  //   return list;
-  // }
 
   Future<List<MeetingModel>> getAllData() async {
     final db = await database;
@@ -230,8 +191,6 @@ class DBProvider {
       
     }
 
-    // print(ListAllData.map((e) => e));po
-    // log(ListAllData);
     return ListAllData;
   }
 
@@ -245,7 +204,7 @@ class DBProvider {
           name: listSessions[i].name,
           description: listSessions[i].description,
           highlight: listSessions[i].highlight,
-          columns: getRespectiveColumns(listColumns),
+          columns: getRespectiveColumns(listColumns, listSessions[i].id),
           stickies: getRespectiveStickies(listStickies, listSessions[i].id)
 
         ));
@@ -276,17 +235,21 @@ class DBProvider {
   }
 
 
-  List<Columns> getRespectiveColumns(List<ColumnsTable> listColumns){
+  List<Columns> getRespectiveColumns(List<ColumnsTable> listColumns, String sessionId){
     List<Columns> respectiveColumns = [];
 
     for (var i = 0; i < listColumns.length; i++) {
+
+      if(listColumns[i].sessionId == sessionId){
         respectiveColumns.add(Columns(
           name: listColumns[i].name,
           color: listColumns[i].color,
 
         ));
-      
+      }
     }
+
+    
 
     return respectiveColumns;
   }

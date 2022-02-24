@@ -73,21 +73,25 @@ class SessionsTable {
 }
 
 class ColumnsTable {
+  final String sessionId;
   final String name;
   final String color;
 
-  ColumnsTable({required this.name, required this.color});
+  ColumnsTable({required this.name, required this.color, required this.sessionId});
 
   factory ColumnsTable.fromJson(Map<String, dynamic> json) {
     return ColumnsTable(
       name: json['name'],
-      color: json['color']
+      color: json['color'], 
+      sessionId: json['sessionId'] ?? '0'
     );
   }
 
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson(String idSession) => {
     "name": name,
-    "color": color
+    "color": color,
+    "sessionId": idSession
+    
   };
 }
 

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_avancado/main.dart';
@@ -20,11 +21,11 @@ class Meetings extends StatefulWidget{
 
 class _Meetings extends State<Meetings>{
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   getMeetingsData();
-  // }
+  @override
+  void initState() {
+    super.initState();
+    getMeetingsData();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,8 +42,6 @@ class _Meetings extends State<Meetings>{
               onPressed: () {                
                 Locale newLocale = const Locale('pt', 'BR');
                 StickySessionApp.setLocale(context, newLocale);
-
-                // DBProvider.db.getAllData();
                                 
                 Timer(const Duration(seconds: 2), () {
                   StickySessionApp.setLocale(context, newLocale);
@@ -68,14 +67,18 @@ class _Meetings extends State<Meetings>{
       ),
 
       body: FutureBuilder(
-        // future: getMeetingsData(),
         future: DBProvider.db.getAllData(),
         builder: (context, snapshot){
-          if(snapshot.hasData){
-            return BodyMeetings(meetingsList: snapshot.data!,);
+          if((snapshot.hasData)){
+            if(snapshot.data!.toString() != '[]'){
+              return BodyMeetings(meetingsList: snapshot.data!,);
+            }
+            else{
+              return const Center(child: Text('Verifique sua conexão a internet'));
+            }
           }
           else if(snapshot.hasError){
-            return Text('${snapshot.error}');
+            return const Center(child: Text('Verifique sua conexão a internet'));
           }
           return const Center(child: CircularProgressIndicator());
         }

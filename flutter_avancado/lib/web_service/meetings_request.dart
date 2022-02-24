@@ -26,12 +26,13 @@ Future<List<MeetingModel>> getMeetingsData() async {
         .map(
           (dynamic item) {
             DBProvider.db.insertMeetings(MeetingsTable.fromJson(item));
-
+            
             for (var i = 0; i < item['sessions'].length; i++) {
+
               DBProvider.db.insertSessions(SessionsTable.fromJson(item['sessions'][i]));
 
               for (var j = 0; j < item['sessions'][i]['columns'].length; j++) {
-                DBProvider.db.insertColumns(ColumnsTable.fromJson(item['sessions'][i]['columns'][j]));
+                DBProvider.db.insertColumns(ColumnsTable.fromJson(item['sessions'][i]['columns'][j]), item['sessions'][i]['id']);
               }
 
               for (var k = 0; k < item['sessions'][i]['stickies'].length; k++) {
