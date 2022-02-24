@@ -26,16 +26,18 @@ Future<List<MeetingModel>> getMeetingsData() async {
         .map(
           (dynamic item) {
             DBProvider.db.insertMeetings(MeetingsTable.fromJson(item));
-            // print(item['sessions'][0]);
-            // log('BBBBBBBBBBBBBBBBBB');
 
-            // item['sessions'].map((dynamic session) {
-              // return DBProvider.db.insertSessions(SessionsTable.fromJson(session));
-              // session['columns'].map((dynamic column) => DBProvider.db.insertColumns(ColumnsTable.fromJson(column)));
-              // session['stickies'].map((dynamic sticky) => DBProvider.db.insertStickies(StickiesTable.fromJson(sticky)));
-            // });
-            // DBProvider.db.insertSessions(SessionsTable.fromJson(item['sessions'][0]));
+            for (var i = 0; i < item['sessions'].length; i++) {
+              DBProvider.db.insertSessions(SessionsTable.fromJson(item['sessions'][i]));
 
+              for (var j = 0; j < item['sessions'][i]['columns'].length; j++) {
+                DBProvider.db.insertColumns(ColumnsTable.fromJson(item['sessions'][i]['columns'][j]));
+              }
+
+              for (var k = 0; k < item['sessions'][i]['stickies'].length; k++) {
+                DBProvider.db.insertStickies(StickiesTable.fromJson(item['sessions'][i]['stickies'][k]));
+              }
+            }
 
             return MeetingModel.fromJson(item);
           }

@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:flutter_avancado/models/meeting_model.dart';
 import 'package:flutter_avancado/providers/models.dart';
 import 'package:path/path.dart';
 
@@ -81,15 +82,8 @@ class DBProvider {
   }
 
 
-
-
-
   //##########################
   //##########################
-
-
-
-
 
 
   // Insert InfoPlants on database
@@ -109,13 +103,8 @@ class DBProvider {
     return res;
   }
 
-
-
   //##########################
   //##########################
-
-
-
 
 
     // Insert InfoPlants on database
@@ -134,15 +123,9 @@ class DBProvider {
 
     return res;
   }
-
-
-
   
   //##########################
   //##########################
-
-
-
 
     // Insert InfoPlants on database
   insertStickies(StickiesTable newInfoPlants) async {
@@ -164,50 +147,149 @@ class DBProvider {
 
 
 
-  Future<List<MeetingsTable>> getAllMeetings() async {
+  // Future<List<MeetingsTable>> getAllMeetings() async {
+  //   final db = await database;
+  //   final res = await db.rawQuery("SELECT * FROM Meetings");
+
+  //   List<MeetingsTable> list =
+  //   res.isNotEmpty ? res.map((c) => MeetingsTable.fromJson(c)).toList() : [];
+
+  //   print(list);
+  //   return list;
+  // }
+
+  // Future<List<SessionsTable>> getAllSessions() async {
+  //   final db = await database;
+  //   final res = await db.rawQuery("SELECT * FROM Sessions");
+
+  //   List<SessionsTable> list =
+  //   res.isNotEmpty ? res.map((c) => SessionsTable.fromJson(c)).toList() : [];
+
+  //   print(list);
+  //   return list;
+  // }
+
+  //   Future<List<ColumnsTable>> getAllColumns() async {
+  //   final db = await database;
+  //   final res = await db.rawQuery("SELECT * FROM Columns");
+
+  //   List<ColumnsTable> list =
+  //   res.isNotEmpty ? res.map((c) => ColumnsTable.fromJson(c)).toList() : [];
+
+  //   print(list);
+  //   return list;
+  // }
+
+  //   Future<List<StickiesTable>> getAllStickies() async {
+  //   final db = await database;
+  //   final res = await db.rawQuery("SELECT * FROM Stickies");
+
+  //   List<StickiesTable> list =
+  //   res.isNotEmpty ? res.map((c) => StickiesTable.fromJson(c)).toList() : [];
+
+  //   print(list);
+  //   return list;
+  // }
+
+  Future<List<MeetingModel>> getAllData() async {
     final db = await database;
-    final res = await db.rawQuery("SELECT * FROM Meetings");
+    final resMeetings = await db.rawQuery("SELECT * FROM Meetings");
+    final resSessions = await db.rawQuery("SELECT * FROM Sessions");
+    final resColumns = await db.rawQuery("SELECT * FROM Columns");
+    final resStickies = await db.rawQuery("SELECT * FROM Stickies");
 
-    List<MeetingsTable> list =
-    res.isNotEmpty ? res.map((c) => MeetingsTable.fromJson(c)).toList() : [];
 
-    print(list);
-    return list;
+
+    List<MeetingsTable> listMeetings =
+    resMeetings.isNotEmpty ? resMeetings.map((c) => MeetingsTable.fromJson(c)).toList() : [];
+
+    List<SessionsTable> listSessions =
+    resSessions.isNotEmpty ? resSessions.map((c) => SessionsTable.fromJson(c)).toList() : [];
+    
+    List<ColumnsTable> listColumns =
+    resColumns.isNotEmpty ? resColumns.map((c) => ColumnsTable.fromJson(c)).toList() : [];
+
+    List<StickiesTable> listStickies =
+    resStickies.isNotEmpty ? resStickies.map((c) => StickiesTable.fromJson(c)).toList() : [];
+
+
+    List<MeetingModel> ListAllData = [];
+
+    for (var i = 0; i < listMeetings.length; i++) {
+      ListAllData.add(MeetingModel(
+        id: listMeetings[i].id,
+        title: listMeetings[i].title,
+        description: listMeetings[i].description,
+        startDate: listMeetings[i].startDate,
+        endDate: listMeetings[i].endDate,
+        local: listMeetings[i].local,
+        sessions: getRespectiveSessions(listSessions, listColumns, listStickies, listMeetings[i].id)
+        
+
+      ));
+      
+    }
+
+    // print(ListAllData.map((e) => e));po
+    // log(ListAllData);
+    return ListAllData;
   }
 
-  Future<List<SessionsTable>> getAllSessions() async {
-    final db = await database;
-    final res = await db.rawQuery("SELECT * FROM Sessions");
+  List<Sessions> getRespectiveSessions(List<SessionsTable> listSessions, List<ColumnsTable> listColumns, List<StickiesTable> listStickies, String meetingId){
+    List<Sessions> respectiveSessions = [];
+    for (var i = 0; i < listSessions.length; i++) {
+      if(listSessions[i].meetingId == meetingId){
+        respectiveSessions.add(Sessions(
+          id: listSessions[i].id,
+          meetingId: listSessions[i].meetingId,
+          name: listSessions[i].name,
+          description: listSessions[i].description,
+          highlight: listSessions[i].highlight,
+          columns: getRespectiveColumns(listColumns),
+          stickies: getRespectiveStickies(listStickies, listSessions[i].id)
 
-    List<SessionsTable> list =
-    res.isNotEmpty ? res.map((c) => SessionsTable.fromJson(c)).toList() : [];
+        ));
 
-    print(list);
-    return list;
+      }
+    }
+
+    return respectiveSessions;
+
   }
 
-    Future<List<ColumnsTable>> getAllColumns() async {
-    final db = await database;
-    final res = await db.rawQuery("SELECT * FROM Columns");
+  List<Stickies> getRespectiveStickies(List<StickiesTable> listStickies, String sessionId){
+    List<Stickies> respectiveStickies = [];
 
-    List<ColumnsTable> list =
-    res.isNotEmpty ? res.map((c) => ColumnsTable.fromJson(c)).toList() : [];
+    for (var i = 0; i < listStickies.length; i++) {
+      if(listStickies[i].sessionId == sessionId){
+        respectiveStickies.add(Stickies(
+          id: listStickies[i].id,
+          content: listStickies[i].content,
+          columnName: listStickies[i].columnName,
+          userName: listStickies[i].userName,
+          sessionId: listStickies[i].sessionId
+        ));
+      }
+    }
 
-    print(list);
-    return list;
+    return respectiveStickies;
   }
 
-    Future<List<StickiesTable>> getAllStickies() async {
-    final db = await database;
-    final res = await db.rawQuery("SELECT * FROM Stickies");
 
-    List<StickiesTable> list =
-    res.isNotEmpty ? res.map((c) => StickiesTable.fromJson(c)).toList() : [];
+  List<Columns> getRespectiveColumns(List<ColumnsTable> listColumns){
+    List<Columns> respectiveColumns = [];
 
-    print(list);
-    return list;
+    for (var i = 0; i < listColumns.length; i++) {
+        respectiveColumns.add(Columns(
+          name: listColumns[i].name,
+          color: listColumns[i].color,
+
+        ));
+      
+    }
+
+    return respectiveColumns;
   }
-
 
 
 }
