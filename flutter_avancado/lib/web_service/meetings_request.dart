@@ -2,8 +2,12 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter_avancado/models/meeting_model.dart';
+import 'package:flutter_avancado/providers/models.dart';
 import 'package:retry/retry.dart';
 import 'package:http/http.dart' as http;
+import 'dart:developer';
+
+import '../providers/db_provider.dart';
 
 
 Future<List<MeetingModel>> getMeetingsData() async {
@@ -21,8 +25,17 @@ Future<List<MeetingModel>> getMeetingsData() async {
     List<MeetingModel> meetingsList = responseData
         .map(
           (dynamic item) {
-            // DBProvider.db.createInfoPlants(InfoPlants.fromJson(item));
-            // DBProvider.db.insertFavoritePlants(InfoPlants.fromJson(item));
+            DBProvider.db.insertMeetings(MeetingsTable.fromJson(item));
+            // print(item['sessions'][0]);
+            // log('BBBBBBBBBBBBBBBBBB');
+
+            // item['sessions'].map((dynamic session) {
+              // return DBProvider.db.insertSessions(SessionsTable.fromJson(session));
+              // session['columns'].map((dynamic column) => DBProvider.db.insertColumns(ColumnsTable.fromJson(column)));
+              // session['stickies'].map((dynamic sticky) => DBProvider.db.insertStickies(StickiesTable.fromJson(sticky)));
+            // });
+            // DBProvider.db.insertSessions(SessionsTable.fromJson(item['sessions'][0]));
+
 
             return MeetingModel.fromJson(item);
           }
